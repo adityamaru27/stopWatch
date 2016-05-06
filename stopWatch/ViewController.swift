@@ -9,10 +9,41 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var timer = NSTimer()
+    var timeCounter = 0;
 
+    @IBOutlet weak var numberDisplay: UILabel!
+    
+    @IBAction func pause(sender: AnyObject)
+    {
+        timer.invalidate()
+    }
+    
+    @IBAction func start(sender: AnyObject)
+    {
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "result", userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func stopReset(sender: AnyObject)
+    {
+        timer.invalidate()
+        timeCounter = 0;
+        numberDisplay.text = String(0)
+    }
+    
+    func result()
+    {
+        timeCounter++
+        numberDisplay.text = String(timeCounter)
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
